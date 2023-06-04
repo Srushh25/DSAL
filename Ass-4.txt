@@ -4,212 +4,212 @@ Insert new node, ii. Find number of nodes in longest path from root,
 Minimum data value found in the tree,
 Change a tree so that the roles of the left and right pointers are swapped at every node
 
-2: #include<iostream>
-3: #include<stdio.h>
-4: #include<stdlib.h>
-5: using namespace std;
-6: typedef struct node
-7: { int a;
-8: struct node *left,*right;
-9: }node;
-10: struct node *root=NULL;
-11: class BST
-12: {
-13: 
-14: int count;
-15: struct node *temp=NULL,*t1=NULL,*s=NULL, *t=NULL;
-16: public:
-17: BST()
-18: {
-19: count=0;
-20: }
-21: struct node *create();
-22: void insert();
-23: int height(struct node*,int c);
-24: int findmin(struct node*);
-25: void swap(struct node*);
-26: void search(struct node * root, int m);
-27: void display(struct node*);
-28: 
-29: };
-30: 
-31: int main()
-32: {
-33: BST b;
-34: int x, m, c=0,cnt,min,fl;
-35: do
-36: {
-37: cout<<"\n Enter your choice:";
-38: cout<<"\n 1.insert:";
-39: cout<<"\n 2.No of nodes in longest path:";
-40: cout<<"\n 3.Minimum value:";
-41: cout<<"\n 4.Swap:";
-42: cout<<"\n 5.Search:";
-43: cout<<"\n 6.display:";
-44: cout<<"\n 7.exit:";
-45: cin>>x;
-46: switch(x)
-47: {
-48: case 1:
-49: b.insert();
-50: break;
-51: case 2:
-52: cnt=b.height(root, c);
-53: cout<<"\n No of nodes in longest path="<<cnt;
-54: break;
-55: case 3:
-56: min=b.findmin(root);
-57: cout<<"\n Minimum value = "<<min;
-58: break;
-59: case 4:
-60: b.swap(root);
-61: break;
-62: case 5:
-63: cout<<"\n enter data to be searched:";
-64: cin>>m;
-65: b.search(root, m);
-66: break;
-67: case 6 :
-68: b.display(root);
-69: break;
-70: case 7:
-71: exit(0);
-72: }
-73: }while(x!=7);
-74: return 0;
-75: }
-76: 
-77: struct node *BST::create()
-78: {
-79: node *p=new(struct node);
-80: p->left=NULL;
-81: p->right=NULL;
-82: cout<<"\n enter the data";
-83: cin>>p->a;
-84: return p;
-85: }
-86: 
-87: void BST::insert()
-88: { 
-89: temp=create();
-90: if(root==NULL)
-91: {
-92: root=temp;
-93: }
-94: else
-95: {
-96: t1=root;
-97: while(t1!=NULL)
-98: {
-99: s=t1;
-100: if((temp->a)>(t1->a))
-101: {
-102: t1=t1->right;
-103: }
-104: else
-105: {
-106: t1=t1->left;
-107: }
-108: }
-109: if((temp->a)>(s->a))
-110: {
-111: s->right=temp;
-112: }
-113: else
-114: {
-115: s->left=temp;
-116: }
-117: }
-118: }
-119: 
-120: int BST::height(struct node *q,int c)
-121: {
-122: if(root==NULL)
-123: {
-124: cout<<"\n tree not exist";
-125: }
-126: else
-127: {
-128: c++;
-129: if(q->left!=NULL)
-130: {
-131: height(q->left,c);
-132: }
-133: if(q->right!=NULL)
-134: {
-135: height(q->right,c);
-136: }
-137: if(count<c)
-138: {
-139: count=c;
-140: }
-141: }
-142: return count;
-143: }
-144: 
-145: int BST::findmin(node *T)
-146: {
-147: while(T->left!=NULL)
-148: {
-149: T=T->left;
-150: }
-151: return T->a;
-152: }
-153: 
-154: void BST::swap(struct node *q)
-155: {
-156: if(q==NULL)
-157: {
-158: cout<<"\n tree not exist";
-159: }
-160: else
-161: {
-162: if(q->left!=NULL)
-163: swap(q->left);
-164: if(q->right!=NULL)
-165: swap(q->right);
-166: t=q->left;
-167: q->left=q->right;
-168: q->right=t;
-169: }
-170: }
-171: 
-172: void BST::search(struct node * root, int m)
-173: {
-174: int f;
-175: if(root!=NULL)
-176: {
-177: if(root->a==m)
-178: f=1;
-179: if(m>root->a)
-180: search(root->right,m);
-181: else
-182: search(root->left,m);
-183: }
-184: if(f==1)
-185: cout<<"\n FOUND!!!";
-186: }
-187: 
-188: void BST::display(struct node *q)
-189: {
-190: if(q==NULL)
-191: {
-192: cout<<"\n tree not exist";
-193: }
-194: else
-195: {
-196: cout<<"\n*"<<q->a;
-197: if(q->left!=NULL)
-198: {
-199: display(q->left);
-200: }
-201: if(q->right!=NULL)
-202: {
-203: display(q->right);
-204: }
-205: }
-206: }
-207: /* OUTPUT
+ 
+#include<iostream>
+#include<stdio.h>
+#include<stdlib.h>
+using namespace std;
+typedef struct node
+{ int a;
+struct node *left,*right;
+}node;
+struct node *root=NULL;
+class BST
+ {
+ 
+ int count;
+ struct node *temp=NULL,*t1=NULL,*s=NULL, *t=NULL;
+ public:
+ BST()
+ {
+ count=0;
+ }
+ struct node *create();
+ void insert();
+ int height(struct node*,int c);
+int findmin(struct node*);
+void swap(struct node*);
+void search(struct node * root, int m);
+void display(struct node*);
+
+ };
+  
+int main()
+{
+ BST b;
+ int x, m, c=0,cnt,min,fl;
+ do
+ {
+ cout<<"\n Enter your choice:";
+ cout<<"\n 1.insert:";
+ cout<<"\n 2.No of nodes in longest path:";
+ cout<<"\n 3.Minimum value:";
+ cout<<"\n 4.Swap:";
+ cout<<"\n 5.Search:";
+ cout<<"\n 6.display:";
+ cout<<"\n 7.exit:";
+ cin>>x;
+ switch(x)
+ {
+ case 1:
+ b.insert();
+ break;
+ case 2:
+ cnt=b.height(root, c);
+ cout<<"\n No of nodes in longest path="<<cnt;
+  break;
+case 3:
+ min=b.findmin(root);
+ cout<<"\n Minimum value = "<<min;
+ break;
+ case 4:
+ b.swap(root);
+break;
+ case 5:
+ cout<<"\n enter data to be searched:";
+ cin>>m;
+ b.search(root, m);
+ break;
+ case 6 :
+b.display(root);
+ break;
+ case 7:
+ exit(0);
+ }
+ }while(x!=7);
+ return 0;
+ }
+ 
+ struct node *BST::create()
+ {
+ node *p=new(struct node);
+ p->left=NULL;
+ p->right=NULL;
+ cout<<"\n enter the data";
+ cin>>p->a;
+ return p;
+ }
+ 
+ void BST::insert()
+ { 
+ temp=create();
+ if(root==NULL)
+ {
+ root=temp;
+ }
+ else
+ {
+ t1=root;
+ while(t1!=NULL)
+{
+ s=t1;
+ if((temp->a)>(t1->a))
+ {
+ t1=t1->right;
+ }
+ else
+ {
+ t1=t1->left;
+ }
+ }
+ if((temp->a)>(s->a))
+ {
+ s->right=temp;
+ }
+ else
+ {
+ s->left=temp;
+ }
+ }
+ }
+ 
+ int BST::height(struct node *q,int c)
+ {
+ if(root==NULL)
+ {
+ cout<<"\n tree not exist";
+ }
+ else
+ {
+ c++;
+if(q->left!=NULL)
+ {
+ height(q->left,c);
+ }
+ if(q->right!=NULL)
+ {
+ height(q->right,c);
+ }
+ if(count<c)
+ {
+ count=c;
+ }
+}
+ return count;
+ }
+
+  int BST::findmin(node *T)
+ {
+ while(T->left!=NULL)
+ {
+ T=T->left;
+ }
+ return T->a;
+ }
+ 
+ void BST::swap(struct node *q)
+ {
+ if(q==NULL)
+ {
+ cout<<"\n tree not exist";
+ }
+ else
+ {
+ if(q->left!=NULL)
+ swap(q->left);
+ if(q->right!=NULL)
+ swap(q->right);
+ t=q->left;
+ q->left=q->right;
+ q->right=t;
+ }
+ }
+ 
+ void BST::search(struct node * root, int m)
+ {
+ int f;
+ if(root!=NULL)
+ {
+ if(root->a==m)
+ f=1;
+ if(m>root->a)
+ search(root->right,m);
+ else
+ search(root->left,m);
+ }
+ if(f==1)
+ cout<<"\n FOUND!!!";
+ } 
+ void BST::display(struct node *q)
+ {
+ if(q==NULL)
+ {
+ cout<<"\n tree not exist";
+ }
+ else
+ {
+ cout<<"\n*"<<q->a;
+ if(q->left!=NULL)
+ {
+ display(q->left);
+ }
+ if(q->right!=NULL)
+ {
+ display(q->right);
+ }
+ }
+ }
+/*207: OUTPUT
 208: 
 209: Enter your choice:
 210: 1.insert:
@@ -319,6 +319,4 @@ Change a tree so that the roles of the left and right pointers are swapped at ev
 314: 7.exit:7
 315: 
 316: --------------------------------
-317: Process exited after 76.07 seconds with return value 0
-318: Press any key to continue . . .
-319: */
+317: Process exited after 76.07 seconds with return value */
